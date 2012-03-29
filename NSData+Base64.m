@@ -21,7 +21,10 @@
 //     distribution.
 //
 
-// NOTE: I have made one small alteration to Matt Gallagher's file in that I have renamed a couple of the methods to have a CWL (for Cocoa With Love) prefix to keep them from clashing with built in PhoneGap methods.
+// Alteration notice from Tommy-Carlos Williams (tommy@devgeeks.org)
+// I have made one small alteration to Matt Gallagher's file in that I have renamed a 
+// couple of the methods to have a CWL (for Cocoa With Love) prefix to keep them from 
+// clashing with built in PhoneGap methods.
 
 #import "NSData+Base64.h"
 
