@@ -1,6 +1,6 @@
 //
 //  Canvas2ImagePlugin.h
-//  Canvas2ImagePlugin PhoneGap plugin
+//  Canvas2ImagePlugin PhoneGap/Cordova plugin
 //
 //  Created by Tommy-Carlos Williams on 29/03/12.
 //  Copyright (c) 2012 Tommy-Carlos Williams. All rights reserved.
@@ -10,11 +10,17 @@
 #import <Foundation/Foundation.h>
 #ifdef PHONEGAP_FRAMEWORK
 #import <PhoneGap/PGPlugin.h>
-#else
-#import "PGPlugin.h"
+#endif
+#ifdef CORDOVA_FRAMEWORK
+#import <Cordova/CDVPlugin.h>
 #endif
 
+#ifdef PHONEGAP_FRAMEWORK
 @interface Canvas2ImagePlugin : PGPlugin 
+#endif
+#ifdef CORDOVA_FRAMEWORK
+@interface Canvas2ImagePlugin : CDVPlugin
+#endif
 {
 	NSString* callbackId;
 }

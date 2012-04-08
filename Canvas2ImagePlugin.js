@@ -1,6 +1,6 @@
 //
 //  Canvas2ImagePlugin.js
-//  Canvas2ImagePlugin PhoneGap plugin
+//  Canvas2ImagePlugin PhoneGap/Cordova plugin
 //
 //  Created by Tommy-Carlos Williams on 29/03/12.
 //  Copyright (c) 2012 Tommy-Carlos Williams. All rights reserved.
@@ -24,7 +24,12 @@ Canvas2ImagePlugin.prototype.saveImageDataToLibrary = function(successCallback, 
     }
 	var canvas = document.getElementById(canvasId);
 	var imageData = canvas.toDataURL().replace(/data:image\/png;base64,/,'');
-	PhoneGap.exec(successCallback, failureCallback, "Canvas2ImagePlugin","saveImageDataToLibrary",[imageData]);
+	if (typeof PhoneGap !== "undefined") {
+		PhoneGap.exec(successCallback, failureCallback, "Canvas2ImagePlugin","saveImageDataToLibrary",[imageData]);
+	}
+	if (typeof Cordova !== "undefined") {
+		Cordova.exec(successCallback, failureCallback, "Canvas2ImagePlugin","saveImageDataToLibrary",[imageData]);
+	}
 };
 
 PhoneGap.addConstructor(function(){
