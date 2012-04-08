@@ -27,7 +27,6 @@
 - (void)saveImageDataToLibrary:(NSMutableArray*)arguments withDict:(NSMutableDictionary*)options
 {
 	self.callbackId = arguments.pop;
-	NSLog(@"Did we make it??");
 	
 	NSData* imageData = [NSData dataFromBase64String:arguments.pop];
 	
@@ -47,7 +46,7 @@
 		PluginResult* result = [PluginResult resultWithStatus: PGCommandStatus_ERROR messageAsString:error.description];
 #endif
 #ifdef CORDOVA_FRAMEWORK
-		PluginResult* result = [PluginResult resultWithStatus: CDVCommandStatus_ERROR messageAsString:error.description];
+		CDVPluginResult* result = [CDVPluginResult resultWithStatus: CDVCommandStatus_ERROR messageAsString:error.description];
 #endif
 		[self.webView stringByEvaluatingJavaScriptFromString:[result toSuccessCallbackString: self.callbackId]];
     }
@@ -59,7 +58,7 @@
 		PluginResult* result = [PluginResult resultWithStatus: PGCommandStatus_OK messageAsString:@"Image saved"];
 #endif
 #ifdef CORDOVA_FRAMEWORK
-		PluginResult* result = [PluginResult resultWithStatus: CDVCommandStatus_OK messageAsString:@"Image saved"];
+		CDVPluginResult* result = [CDVPluginResult resultWithStatus: CDVCommandStatus_OK messageAsString:@"Image saved"];
 #endif
 		[self.webView stringByEvaluatingJavaScriptFromString:[result toSuccessCallbackString: self.callbackId]];
     }

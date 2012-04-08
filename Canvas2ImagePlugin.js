@@ -32,9 +32,19 @@ Canvas2ImagePlugin.prototype.saveImageDataToLibrary = function(successCallback, 
 	}
 };
 
-PhoneGap.addConstructor(function(){
-	if(!window.plugins) {
-		window.plugins = {};
-	}
-	window.plugins.canvas2ImagePlugin = new Canvas2ImagePlugin();
-});
+if (typeof PhoneGap !== "undefined") {
+	PhoneGap.addConstructor(function(){
+		if(!window.plugins) {
+			window.plugins = {};
+		}
+		window.plugins.canvas2ImagePlugin = new Canvas2ImagePlugin();
+	});
+}
+if (typeof Cordova !== "undefined") {
+	Cordova.addConstructor(function(){
+		if(!window.plugins) {
+			window.plugins = {};
+		}
+		window.plugins.canvas2ImagePlugin = new Canvas2ImagePlugin();
+	});
+}
