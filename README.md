@@ -8,7 +8,7 @@ This plugin allows you to save the contents of an HTML canvas tag to the iOS Pho
 
 Add the plugin much like any other:
 
-1.	Add the Canvas2ImagePlugin.h and VolumeSlider.m classes to your Plugins folder in Xcode (use "Create groups for any added folders")
+1.	Add the Canvas2ImagePlugin.h, Canvas2ImagePlugin.m, NSData+Base64.h and NSData+Base64.m classes to your Plugins folder in Xcode (use "Create groups for any added folders")
 2.	Add the Canvas2ImagePlugin.js file to your www folder
 3.	Add the Canvas2ImagePlugin.js to your html file. eg: `<script type="text/javascript" charset="utf-8" src="Canvas2ImagePlugin.js"></script>`
 4.	Add the plugin to the PhoneGap.plist under Plugins (key: "Canvas2ImagePlugin" value: "Canvas2ImagePlugin")
