@@ -26,8 +26,7 @@ Canvas2ImagePlugin.prototype.saveImageDataToLibrary = function(successCallback, 
 	var imageData = canvas.toDataURL().replace(/data:image\/png;base64,/,'');
 	if (typeof PhoneGap !== "undefined") {
 		PhoneGap.exec(successCallback, failureCallback, "Canvas2ImagePlugin","saveImageDataToLibrary",[imageData]);
-	}
-	if (typeof Cordova !== "undefined") {
+	} else if (typeof Cordova !== "undefined") {
 		Cordova.exec(successCallback, failureCallback, "Canvas2ImagePlugin","saveImageDataToLibrary",[imageData]);
 	}
 };
