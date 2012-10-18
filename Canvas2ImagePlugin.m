@@ -8,7 +8,7 @@
 //
 
 #import "Canvas2ImagePlugin.h"
-#import "NSData+Base64.h"
+#import "NSDataAdditions.h"
 
 @implementation Canvas2ImagePlugin
 @synthesize callbackId;
@@ -28,7 +28,7 @@
 {
 	self.callbackId = arguments.pop;
 	
-	NSData* imageData = [NSData dataFromBase64String:arguments.pop];
+	NSData* imageData = [NSData dataWithBase64EncodedString:arguments.pop];
 	
 	UIImage* image = [[[UIImage alloc] initWithData:imageData] autorelease];	
 	UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
