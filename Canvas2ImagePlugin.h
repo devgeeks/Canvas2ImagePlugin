@@ -7,20 +7,10 @@
 //	MIT Licensed
 //
 
-#import <Foundation/Foundation.h>
-#ifdef PHONEGAP_FRAMEWORK
-#import <PhoneGap/PGPlugin.h>
-#endif
-#ifdef CORDOVA_FRAMEWORK
-#import <Cordova/CDVPlugin.h>
-#endif
 
-#ifdef PHONEGAP_FRAMEWORK
-@interface Canvas2ImagePlugin : PGPlugin 
-#endif
-#ifdef CORDOVA_FRAMEWORK
+#import <Cordova/CDVPlugin.h>
+
 @interface Canvas2ImagePlugin : CDVPlugin
-#endif
 {
 	NSString* callbackId;
 }

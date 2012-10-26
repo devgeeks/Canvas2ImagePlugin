@@ -7,32 +7,29 @@
 //	MIT Licensed
 //
 
-(function(gap){
-	
-	Canvas2ImagePlugin = function() {
-		
-	}
+(function(cordova) {
+
+	function Canvas2ImagePlugin() {}
+
 	
 	Canvas2ImagePlugin.prototype.saveImageDataToLibrary = function(successCallback, failureCallback, canvasId) {
 		// successCallback required
-	    	if (typeof successCallback != "function") {
-	        	console.log("Canvas2ImagePlugin Error: successCallback is not a function");
-	        	return;
-	    	}
-	    	if (typeof failureCallback != "function") {
-	       		console.log("Canvas2ImagePlugin Error: failureCallback is not a function");
-	        	return;
-	    	}
+		if (typeof successCallback != "function") {
+			console.log("Canvas2ImagePlugin Error: successCallback is not a function");
+			return;
+		}
+		if (typeof failureCallback != "function") {
+			console.log("Canvas2ImagePlugin Error: failureCallback is not a function");
+			return;
+		}
 		var canvas = document.getElementById(canvasId);
 		var imageData = canvas.toDataURL().replace(/data:image\/png;base64,/,'');
-		gap.exec(successCallback, failureCallback, "Canvas2ImagePlugin","saveImageDataToLibrary",[imageData]);
+		return cordova.exec(successCallback, failureCallback, "Canvas2ImagePlugin","saveImageDataToLibrary",[imageData]);
 	};
-	
-	gap.addConstructor(function(){
-		if(!window.plugins) {
-			window.plugins = {};
-		}
+
+	cordova.addConstructor(function() {
+		window.plugins = window.plugins || {};
 		window.plugins.canvas2ImagePlugin = new Canvas2ImagePlugin();
 	});
 	
-})(window.PhoneGap || window.Cordova || window.cordova);
+})(window.cordova || window.Cordova);
