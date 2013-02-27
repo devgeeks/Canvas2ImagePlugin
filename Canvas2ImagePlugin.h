@@ -13,9 +13,11 @@
 @interface Canvas2ImagePlugin : CDVPlugin
 {
 	NSString* callbackId;
+    NSString* imageFilePath;
 }
 
 @property (nonatomic, copy) NSString* callbackId;
+@property (nonatomic, copy) NSString* imageFilePath;
 
 - (void)saveImageDataToLibrary:(NSMutableArray*)arguments withDict:(NSMutableDictionary*)options;
 
