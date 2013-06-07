@@ -1,0 +1,22 @@
+<plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    id="com.Canvas2ImagePlugin.foo"
+    version="1.0.0">
+
+    <name>Canvas 2 Image</name>
+
+    <asset src="www/Canvas2ImagePlugin.js" target="Canvas2ImagePlugin.js" />
+
+    <!-- ios -->
+    <platform name="ios">
+        <plugins-plist key="Canvas2ImagePlugin"
+                    string="Canvas2ImagePlugin" />
+
+        <header-file src="Canvas2ImagePlugin.h" />
+        <header-file src="Canvas2ImagePlugin.h" />
+
+        <source-file src="Canvas2ImagePlugin.m" />
+        <source-file src="Canvas2ImagePlugin.m" />
+    </platform>
+
+</plugin>
