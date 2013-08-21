@@ -13,9 +13,7 @@
                     string="Canvas2ImagePlugin" />
 
         <header-file src="Canvas2ImagePlugin.h" />
-        <header-file src="Canvas2ImagePlugin.h" />
 
-        <source-file src="Canvas2ImagePlugin.m" />
         <source-file src="Canvas2ImagePlugin.m" />
     </platform>
 
