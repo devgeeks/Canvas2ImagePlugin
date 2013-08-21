@@ -1,7 +1,7 @@
 Canvas2ImagePlugin
 ============
 
-Installation
+Installation (out of date... should now be installed using plugman or the cordova cli)
 ------------
 
 This plugin allows you to save the contents of an HTML canvas tag to the iOS Photo Library from your app.
