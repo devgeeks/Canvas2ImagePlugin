@@ -12,9 +12,9 @@
         <plugins-plist key="Canvas2ImagePlugin"
                     string="Canvas2ImagePlugin" />
 
-        <header-file src="Canvas2ImagePlugin.h" />
+        <header-file src="src/Canvas2ImagePlugin.h" />
 
-        <source-file src="Canvas2ImagePlugin.m" />
+        <source-file src="src/Canvas2ImagePlugin.m" />
     </platform>
 
 </plugin>
