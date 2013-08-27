@@ -14,12 +14,14 @@
         <config-file target="config.xml" parent="/*">
             <feature name="Canvas2ImagePlugin">
                 <param name="ios-package" value="Canvas2ImagePlugin"/>
+                <param name="onload" value="true" />
             </feature>
         </config-file>
 
         <header-file src="src/ios/Canvas2ImagePlugin.h" />
 
-        <source-file src="src/ios/Canvas2ImagePlugin.m" />
+        <source-file src="src/ios/Canvas2ImagePlugin.m"
+            compiler-flags="-fno-objc-arc" />
     </platform>
 
 </plugin>
