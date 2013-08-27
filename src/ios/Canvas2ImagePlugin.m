@@ -13,17 +13,16 @@
 @implementation Canvas2ImagePlugin
 @synthesize callbackId;
 
--(CDVPlugin*) initWithWebView:(UIWebView*)theWebView
-{
-    self = (Canvas2ImagePlugin*)[super initWithWebView:theWebView];
-    return self;
-}
+//-(CDVPlugin*) initWithWebView:(UIWebView*)theWebView
+//{
+//    self = (Canvas2ImagePlugin*)[super initWithWebView:theWebView];
+//    return self;
+//}
 
-- (void)saveImageDataToLibrary:(NSMutableArray*)arguments withDict:(NSMutableDictionary*)options
+- (void)saveImageDataToLibrary:(CDVInvokedUrlCommand*)command
 {
-	self.callbackId = arguments.pop;
-	
-	NSData* imageData = [NSData dataFromBase64String:arguments.pop];
+    self.callbackId = command.callbackId;
+	NSData* imageData = [NSData dataFromBase64String:[command.arguments objectAtIndex:0]];
 	
 	UIImage* image = [[[UIImage alloc] initWithData:imageData] autorelease];	
 	UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
