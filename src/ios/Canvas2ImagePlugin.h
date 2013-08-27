@@ -17,6 +17,6 @@
 
 @property (nonatomic, copy) NSString* callbackId;
 
-- (void)saveImageDataToLibrary:(NSMutableArray*)arguments withDict:(NSMutableDictionary*)options;
+- (void)saveImageDataToLibrary:(CDVInvokedUrlCommand*)command;
 
 @end
