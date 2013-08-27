@@ -9,8 +9,11 @@
 
     <!-- ios -->
     <platform name="ios">
-        <plugins-plist key="Canvas2ImagePlugin"
-                    string="Canvas2ImagePlugin" />
+        <config-file target="config.xml" parent="/*">
+            <feature name="Canvas2ImagePlugin">
+                <param name="ios-package" value="Canvas2ImagePlugin"/>
+            </feature>
+        </config-file>
 
         <header-file src="src/ios/Canvas2ImagePlugin.h" />
 
