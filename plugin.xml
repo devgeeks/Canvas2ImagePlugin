@@ -5,6 +5,16 @@
 
     <name>Canvas 2 Image</name>
 
+    <engines>
+        <engine name="cordova" version=">=3.0.0" />
+    </engines>
+
+    <description>This plugin allows you to save the contents of an HTML canvas tag to the iOS Photo Library from your app.</description>
+    <author>Tommy-Carlos Williams - tommy@devgeeks.org</author>
+    <keywords>canvas,image,photo library</keywords>
+
+    <license>MIT</license>
+
     <js-module src="www/Canvas2ImagePlugin.js" name="Canvas2ImagePlugin">
         <clobbers target="window.canvas2ImagePlugin" />
     </js-module>
