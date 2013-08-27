@@ -5,7 +5,9 @@
 
     <name>Canvas 2 Image</name>
 
-    <asset src="www/Canvas2ImagePlugin.js" target="Canvas2ImagePlugin.js" />
+    <js-module src="www/Canvas2ImagePlugin.js" name="Canvas2ImagePlugin">
+        <clobbers target="window.canvas2ImagePlugin" />
+    </js-module>
 
     <!-- ios -->
     <platform name="ios">
