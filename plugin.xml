@@ -34,4 +34,17 @@
             compiler-flags="-fno-objc-arc" />
     </platform>
 
+    <!-- android -->
+    <platform name="android">
+
+        <config-file target="res/xml/config.xml" parent="/*">
+          <feature name="Canvas2ImagePlugin" >
+            <param name="android-package" value="org.devgeeks.Canvas2ImagePlugin.Canvas2ImagePlugin"/>
+          </feature>
+        </config-file>
+
+        <source-file src="src/android/Canvas2ImagePlugin.java" 
+            target-dir="src/org/devgeeks/Canvas2ImagePlugin" />
+
+    </platform>
 </plugin>

@@ -1,11 +1,12 @@
-package org.apache.cordova.plugin;
+package org.devgeeks.Canvas2ImagePlugin;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.Calendar;
 
-import org.apache.cordova.api.CallbackContext;
-import org.apache.cordova.api.CordovaPlugin;
+import org.apache.cordova.CallbackContext;
+import org.apache.cordova.CordovaPlugin;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 
@@ -116,6 +117,6 @@ public class Canvas2ImagePlugin extends CordovaPlugin {
 		Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
 	    Uri contentUri = Uri.fromFile(imageFile);
 	    mediaScanIntent.setData(contentUri);	      		  
-	    this.cordova.getActivity().sendBroadcast(mediaScanIntent);
+	    cordova.getActivity().sendBroadcast(mediaScanIntent);
 	} 
 }
