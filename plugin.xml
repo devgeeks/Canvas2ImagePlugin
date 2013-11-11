@@ -37,6 +37,10 @@
     <!-- android -->
     <platform name="android">
 
+        <config-file target="AndroidManifest.xml" parent="/*">
+            <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+        </config-file>
+
         <config-file target="res/xml/config.xml" parent="/*">
           <feature name="Canvas2ImagePlugin" >
             <param name="android-package" value="org.devgeeks.Canvas2ImagePlugin.Canvas2ImagePlugin"/>
