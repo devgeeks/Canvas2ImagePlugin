@@ -8,15 +8,25 @@
 //
 
 module.exports = (function() {
-    function saveImageDataToLibrary(successCallback, failureCallback, canvasId) {
-        // successCallback required
+
+    function validateCallBacks(successCallback, failureCallback){
+
+        var isValid = true;
+
         if (typeof successCallback != "function") {
-         console.log("Canvas2ImagePlugin Error: successCallback is not a function");
+            console.log("Canvas2ImagePlugin Error: successCallback is not a function");
+            isValid = false;
         }
         else if (typeof failureCallback != "function") {
             console.log("Canvas2ImagePlugin Error: failureCallback is not a function");
+            isValid = false;
         }
-        else {
+        return isValid;
+    }
+
+    function saveImageDataToLibrary(successCallback, failureCallback, canvasId) {
+        // successCallback required
+        if (validateCallBacks(successCallback, failureCallback)) {
             var canvas = (typeof canvasId === "string") ? document.getElementById(canvasId) : canvasId;
             var imageData = canvas.toDataURL().replace(/data:image\/png;base64,/,'');
             return saveDataStringAsImageDataToLibrary(successCallback, failureCallback, imageData);
@@ -24,7 +34,10 @@ module.exports = (function() {
     }
 
     function saveDataStringAsImageDataToLibrary(successCallback, failureCallback, imageData) {        
-        return cordova.exec(successCallback, failureCallback, "Canvas2ImagePlugin","saveImageDataToLibrary",[imageData]);        
+        if (validateCallBacks(successCallback, failureCallback)) {
+            return cordova.exec(successCallback, failureCallback,
+                        "Canvas2ImagePlugin","saveImageDataToLibrary",[imageData]);
+        }
     }
 
     return {    
