@@ -1,3 +1,5 @@
+cordova.define("org.devgeeks.Canvas2ImagePlugin.Canvas2ImagePlugin", function(require, exports, module) {
+
 //
 //  Canvas2ImagePlugin.js
 //  Canvas2ImagePlugin PhoneGap/Cordova plugin
@@ -33,17 +35,20 @@ module.exports = (function() {
         }
     }
 
-    function saveDataStringAsImageDataToLibrary(successCallback, failureCallback, imageData) {        
+    function saveDataStringAsImageDataToLibrary(successCallback, failureCallback, imageData) {
         if (validateCallBacks(successCallback, failureCallback)) {
             return cordova.exec(successCallback, failureCallback,
-                        "Canvas2ImagePlugin","saveImageDataToLibrary",[imageData]);
+                "Canvas2ImagePlugin","saveImageDataToLibrary",[imageData]);
         }
     }
 
-    return {    
+    return {
         saveImageDataToLibrary: saveImageDataToLibrary,
         saveDataStringAsImageDataToLibrary: saveDataStringAsImageDataToLibrary
     }
-    
-})();
-  
+
+})()
+
+});
+
+
