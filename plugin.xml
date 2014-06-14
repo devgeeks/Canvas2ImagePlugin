@@ -51,4 +51,16 @@
             target-dir="src/org/devgeeks/Canvas2ImagePlugin" />
 
     </platform>
+
+    <!-- wp8 -->
+    <platform name="wp8">
+        <config-file target="config.xml" parent="/*">
+            <feature name="Canvas2ImagePlugin">
+                <param name="wp-package" value="Canvas2ImagePlugin"/>
+                <param name="onload" value="true" />
+            </feature>
+        </config-file>
+
+        <source-file src="src/wp8/Canvas2ImagePlugin.cs" />
+    </platform>
 </plugin>
