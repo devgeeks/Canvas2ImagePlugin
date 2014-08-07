@@ -1,3 +1,5 @@
+### Fork Note:  This uses some minor modifications of my own combined with the work of ThalesValentim and Tommy-Carlos Williams to return the absolute path of the image in IOS, with a semi-unique filename.  Usage remains the same.  Essentially, it has been brought inline with the android version.
+
 Canvas2ImagePlugin
 ============
 
@@ -15,7 +17,6 @@ Installation
 
 ### NOTE: For older versions of Cordova (You will probably have to use tag 0.2.0)
 
-### Fork Note:  This uses some minor modifications of my own combined with the work of ThalesValentim and Tommy-Carlos Williams to return the absolute path of the image in IOS, with a semi-unique filename.  Usage remains the same.
 
 Usage:
 ------
