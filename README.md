@@ -15,6 +15,8 @@ Installation
 
 ### NOTE: For older versions of Cordova (You will probably have to use tag 0.2.0)
 
+### Fork Note:  This uses some slight modifications of my own combined with the work of ThalesValentim and Tommy-Carlos Williams to return the absolute path of the image in IOS.  Usage remains the same.
+
 Usage:
 ------
 
