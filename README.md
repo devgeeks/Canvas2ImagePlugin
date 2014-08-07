@@ -1,4 +1,4 @@
-### Fork Note:  This uses some minor modifications of my own combined with the work of ThalesValentim and Tommy-Carlos Williams to return the absolute path of the image in IOS, with a semi-unique filename.  Usage remains the same.  Essentially, it has been brought inline with the android version.
+### Fork Note:  This uses some minor modifications of my own combined with the work of Tommy-Carlos Williams and ThalesValentim to return the absolute path of the image in IOS, with a semi-unique filename.  Usage remains the same.  Essentially, it has been brought inline with the android version.
 
 Canvas2ImagePlugin
 ============
