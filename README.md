@@ -33,7 +33,7 @@ function onDeviceReady()
 {
 	window.canvas2ImagePlugin.saveImageDataToLibrary(
         function(msg){
-            console.log(msg);
+            console.log(msg);  //msg is the filename path (for android and iOS)
         },
         function(err){
             console.log(err);
