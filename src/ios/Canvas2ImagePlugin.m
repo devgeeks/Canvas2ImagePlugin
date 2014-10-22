@@ -4,13 +4,14 @@
 //
 //  Created by Tommy-Carlos Williams on 29/03/12.
 //  Copyright (c) 2012 Tommy-Carlos Williams. All rights reserved.
-//	MIT Licensed
+//  MIT Licensed
 //
 //  99% of this code developed by tommy-carlos williams and ThalesValentim
 
 #import "Canvas2ImagePlugin.h"
 #import <Cordova/CDV.h>
-#include <stdlib.h>
+#import <Foundation/Foundation.h>
+
 
 @implementation Canvas2ImagePlugin
 @synthesize callbackId;
@@ -29,7 +30,11 @@
 
 - (void)saveImageDataToLibrary:(CDVInvokedUrlCommand*)command
 {
-    int myRand = arc4random() % 10000000;
+    NSDate *date = [NSDate date];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+    [dateFormatter setDateFormat:@"yyyyMMddHHmmss"];
+    NSString *dateString = [dateFormatter stringFromDate:date];
+
     self.callbackId = command.callbackId;
     NSData* imageData = [NSData dataFromBase64String:[command.arguments objectAtIndex:0]];
     
@@ -37,7 +42,7 @@
 
     NSString * path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
     NSString *temp = @"ImageFile-";
-    NSString *ImageName = [temp stringByAppendingFormat:@"%d",myRand];
+    NSString *ImageName = [temp stringByAppendingFormat:@"%d",dateString];
     [self saveImage:image withFileName:ImageName ofType:@"png" inDirectory:path];
     NSString *tileDirectory = [[NSBundle mainBundle] resourcePath];
     NSString *documentFolderPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
@@ -56,21 +61,21 @@
     {
         // Show error message...
         NSLog(@"ERROR: %@",error);
-		CDVPluginResult* result = [CDVPluginResult resultWithStatus: CDVCommandStatus_ERROR messageAsString:error.description];
-		[self.webView stringByEvaluatingJavaScriptFromString:[result toErrorCallbackString: self.callbackId]];
+        CDVPluginResult* result = [CDVPluginResult resultWithStatus: CDVCommandStatus_ERROR messageAsString:error.description];
+        [self.webView stringByEvaluatingJavaScriptFromString:[result toErrorCallbackString: self.callbackId]];
     }
     else  // No errors
     {
         // Show message image successfully saved
         NSLog(@"IMAGE SAVED!");
-		CDVPluginResult* result = [CDVPluginResult resultWithStatus: CDVCommandStatus_OK messageAsString:@"Image saved"];
-		[self.webView stringByEvaluatingJavaScriptFromString:[result toSuccessCallbackString: self.callbackId]];
+        CDVPluginResult* result = [CDVPluginResult resultWithStatus: CDVCommandStatus_OK messageAsString:@"Image saved"];
+        [self.webView stringByEvaluatingJavaScriptFromString:[result toSuccessCallbackString: self.callbackId]];
     }
 }
 
 - (void)dealloc
-{	
-	[callbackId release];
+{   
+    [callbackId release];
     [super dealloc];
 }
 
