@@ -32,7 +32,7 @@
 {
     NSDate *date = [NSDate date];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
-    [dateFormatter setDateFormat:@"yyyyMMddHHmmss"];
+    [dateFormatter setDateFormat:@"ddMMyyyyHHmmss"];
     NSString *dateString = [dateFormatter stringFromDate:date];
 
     self.callbackId = command.callbackId;
