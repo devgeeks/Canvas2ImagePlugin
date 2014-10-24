@@ -1,5 +1,3 @@
-### Fork Note:  This uses some minor modifications of my own combined with the work of Tommy-Carlos Williams and ThalesValentim to return the absolute path of the image in IOS, with a semi-unique filename.  Usage remains the same.  Essentially, it has been brought inline with the android version.
-
 Canvas2ImagePlugin
 ============
 
@@ -12,11 +10,10 @@ Installation
 
 ### For Cordova 3.0.x:
 
-1. To add this plugin just type: `cordova plugin add https://github.com/wbt11a/Canvas2ImagePlugin.git` or `phonegap local plugin add https://github.com/wbt11a/Canvas2ImagePlugin.git`
-2. To remove this plugin type: `cordova plugin remove org.wbt11a.Canvas2ImagePlugin` or `phonegap local plugin remove org.wbt11a.Canvas2ImagePlugin`
+1. To add this plugin just type: `cordova plugin add https://github.com/devgeeks/Canvas2ImagePlugin.git` or `phonegap local plugin add https://github.com/devgeeks/Canvas2ImagePlugin.git`
+2. To remove this plugin type: `cordova plugin remove org.devgeeks.Canvas2ImagePlugin` or `phonegap local plugin remove org.devgeeks.Canvas2ImagePlugin`
 
 ### NOTE: For older versions of Cordova (You will probably have to use tag 0.2.0)
-
 
 Usage:
 ------
@@ -33,7 +30,7 @@ function onDeviceReady()
 {
 	window.canvas2ImagePlugin.saveImageDataToLibrary(
         function(msg){
-            console.log(msg);  //msg is the filename path (for android and iOS)
+            console.log(msg);
         },
         function(err){
             console.log(err);
