@@ -22,10 +22,10 @@
 - (void)saveImageDataToLibrary:(CDVInvokedUrlCommand*)command
 {
     self.callbackId = command.callbackId;
-	NSData* imageData = [NSData dataFromBase64String:[command.arguments objectAtIndex:0]];
+    NSData* imageData = [NSData dataFromBase64String:[command.arguments objectAtIndex:0]];
 	
-	UIImage* image = [[[UIImage alloc] initWithData:imageData] autorelease];	
-	UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
+    UIImage* image = [[[UIImage alloc] initWithData:imageData] autorelease];
+    UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
 	
 }
 
@@ -36,21 +36,21 @@
     {
         // Show error message...
         NSLog(@"ERROR: %@",error);
-		CDVPluginResult* result = [CDVPluginResult resultWithStatus: CDVCommandStatus_ERROR messageAsString:error.description];
-		[self.webView stringByEvaluatingJavaScriptFromString:[result toErrorCallbackString: self.callbackId]];
+        CDVPluginResult* result = [CDVPluginResult resultWithStatus: CDVCommandStatus_ERROR messageAsString:error.description];
+        [self.commandDelegate sendPluginResult:result callbackId:self.callbackId];
     }
     else  // No errors
     {
         // Show message image successfully saved
         NSLog(@"IMAGE SAVED!");
-		CDVPluginResult* result = [CDVPluginResult resultWithStatus: CDVCommandStatus_OK messageAsString:@"Image saved"];
-		[self.webView stringByEvaluatingJavaScriptFromString:[result toSuccessCallbackString: self.callbackId]];
+        CDVPluginResult* result = [CDVPluginResult resultWithStatus: CDVCommandStatus_OK messageAsString:@"Image saved"];
+        [self.commandDelegate sendPluginResult:result callbackId:self.callbackId];
     }
 }
 
 - (void)dealloc
 {	
-	[callbackId release];
+    [callbackId release];
     [super dealloc];
 }
 
