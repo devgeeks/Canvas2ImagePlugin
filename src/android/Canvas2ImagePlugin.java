@@ -36,8 +36,10 @@ public class Canvas2ImagePlugin extends CordovaPlugin {
 			CallbackContext callbackContext) throws JSONException {
 
 		if (action.equals(ACTION)) {
-
+			
 			String base64 = data.optString(0);
+			String customName = normalizeString(data.optString(1));
+		
 			if (base64.equals("")) // isEmpty() requires API level 9
 				callbackContext.error("Missing base64 string");
 			
@@ -50,7 +52,7 @@ public class Canvas2ImagePlugin extends CordovaPlugin {
 			} else {
 				
 				// Save the image
-				File imageFile = savePhoto(bmp);
+				File imageFile = savePhoto(bmp, customName);
 				if (imageFile == null)
 					callbackContext.error("Error while saving image");
 				
@@ -66,7 +68,7 @@ public class Canvas2ImagePlugin extends CordovaPlugin {
 		}
 	}
 
-	private File savePhoto(Bitmap bmp) {
+	private File savePhoto(Bitmap bmp, String customName) {
 		File retVal = null;
 		
 		try {
@@ -99,7 +101,14 @@ public class Canvas2ImagePlugin extends CordovaPlugin {
 				folder = Environment.getExternalStorageDirectory();
 			}
 			
-			File imageFile = new File(folder, "c2i_" + date.toString() + ".png");
+			if(customName.equals("")){
+				customName = "c2i_" + date.toString() + ".png";
+			}else{
+				customName = customName + ".png";
+			}
+			
+
+			File imageFile = new File(folder, customName);
 
 			FileOutputStream out = new FileOutputStream(imageFile);
 			bmp.compress(Bitmap.CompressFormat.PNG, 100, out);
@@ -123,4 +132,50 @@ public class Canvas2ImagePlugin extends CordovaPlugin {
 	    mediaScanIntent.setData(contentUri);	      		  
 	    cordova.getActivity().sendBroadcast(mediaScanIntent);
 	} 
+	private String normalizeString(String str) {  
+           
+        String[][] caracteresAcento = {  
+                {"Á", "A"}, {"á", "a"},  
+                {"É", "E"}, {"é", "e"},  
+                {"Í", "I"}, {"í", "i"},  
+                {"Ó", "O"}, {"ó", "o"},  
+                {"Ú", "U"}, {"ú", "u"},  
+                {"À", "A"}, {"à", "a"},  
+                {"È", "E"}, {"è", "e"},  
+                {"Ì", "I"}, {"ì", "i"},  
+                {"Ò", "O"}, {"ò", "o"},  
+                {"Ù", "U"}, {"ù", "u"},  
+                {"Â", "A"}, {"â", "a"},  
+                {"Ê", "E"}, {"ê", "e"},  
+                {"Î", "I"}, {"î", "i"},  
+                {"Ô", "O"}, {"ô", "o"},  
+                {"Û", "U"}, {"û", "u"},  
+                {"Ä", "A"}, {"ä", "a"},  
+                {"Ë", "E"}, {"ë", "e"},  
+                {"Ï", "I"}, {"ï", "i"},  
+                {"Ö", "O"}, {"ö", "o"},  
+                {"Ü", "U"}, {"ü", "u"},  
+                {"Ã", "A"}, {"ã", "a"},   
+                {"Õ", "O"}, {"õ", "o"},  
+                {"Ç", "C"}, {"ç", "c"},  
+        };  
+          
+        for (int i = 0; i < caracteresAcento.length; i++) {  
+            str = str.replaceAll(caracteresAcento[i][0], caracteresAcento[i][1]);  
+        }  
+          
+        /** Remove special chars "" **/  
+        String[] caracteresEspeciais = {"\\.", ",", "-", ":", "\\(", "\\)", "ª", "\\|", "\\\\", "°"};  
+          
+        for (int i = 0; i < caracteresEspeciais.length; i++) {  
+            str = str.replaceAll(caracteresEspeciais[i], "");  
+        }  
+  
+        /**  Remove  white spaces **/  
+        str = str.replaceAll("^\\s+","");          
+        str = str.replaceAll("\\s+$","");         
+        str = str.replaceAll("\\s+","");  
+          
+        return str;  
+    }  
 }

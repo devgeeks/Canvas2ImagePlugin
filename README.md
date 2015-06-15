@@ -1,6 +1,9 @@
 Canvas2ImagePlugin
 ============
 
+Added "canvasName" parameter to custom name of image (only for android) *
+Modified for to send string base64  canvas in place canvas element *
+
 This plugin allows you to save the contents of an HTML canvas tag to the iOS Photo Library, Android Gallery or WindowsPhone 8 Photo Album from your app.
 
 See an example project using it here: [https://github.com/devgeeks/Canvas2ImageDemo](https://github.com/devgeeks/Canvas2ImageDemo) - note: this app does not work in wp8.
@@ -28,6 +31,10 @@ Call the `window.canvas2ImagePlugin.saveImageDataToLibrary()` method using succe
 ```javascript
 function onDeviceReady()
 {
+	var myCanvas = document.getElementById('myCanvas');
+	var canvasString = myCanvas.toDataURL();
+	var canvasName 	 = "nameOfFile";
+
 	window.canvas2ImagePlugin.saveImageDataToLibrary(
         function(msg){
             console.log(msg);
@@ -35,7 +42,8 @@ function onDeviceReady()
         function(err){
             console.log(err);
         },
-        document.getElementById('myCanvas')
+       canvasString,
+       canvasName
     );
 }
 ```
