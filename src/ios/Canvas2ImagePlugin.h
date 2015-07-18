@@ -9,6 +9,7 @@
 
 
 #import <Cordova/CDVPlugin.h>
+#import <AssetsLibrary/ALAssetsLibrary.h>
 
 @interface Canvas2ImagePlugin : CDVPlugin
 {
