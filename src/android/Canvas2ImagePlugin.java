@@ -19,6 +19,10 @@ import android.os.Environment;
 import android.util.Base64;
 import android.util.Log;
 
+
+import java.io.StringBufferInputStream;
+import android.util.Base64InputStream;
+
 /**
  * Canvas2ImagePlugin.java
  *
@@ -32,33 +36,49 @@ public class Canvas2ImagePlugin extends CordovaPlugin {
 	public static final String ACTION = "saveImageDataToLibrary";
 
 	@Override
-	public boolean execute(String action, JSONArray data,
-			CallbackContext callbackContext) throws JSONException {
+	public boolean execute(final String action, final JSONArray data,
+			final CallbackContext callbackContext) throws JSONException {
 
 		if (action.equals(ACTION)) {
 
-			String base64 = data.optString(0);
-			if (base64.equals("")) // isEmpty() requires API level 9
-				callbackContext.error("Missing base64 string");
-			
-			// Create the bitmap from the base64 string
-			Log.d("Canvas2ImagePlugin", base64);
-			byte[] decodedString = Base64.decode(base64, Base64.DEFAULT);
-			Bitmap bmp = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
-			if (bmp == null) {
-				callbackContext.error("The image could not be decoded");
-			} else {
-				
-				// Save the image
-				File imageFile = savePhoto(bmp);
-				if (imageFile == null)
-					callbackContext.error("Error while saving image");
-				
-				// Update image gallery
-				scanPhoto(imageFile);
-				
-				callbackContext.success(imageFile.toString());
-			}
+      cordova.getThreadPool().execute(new Runnable() {
+        public void run() {
+
+					StringBufferInputStream inStream = null;
+					// Anonymous block to allow GC collection asap if necessary.
+					{
+						String base64 = data.optString(0);
+						if (base64.equals("")) {
+							// isEmpty() requires API level 9
+							callbackContext.error("Missing base64 string");
+							return;
+						}
+						inStream = new StringBufferInputStream(base64);
+					}
+
+					Base64InputStream b64in = new Base64InputStream(inStream, 0);
+					
+					// Create the bitmap from the base64 string
+					//Log.d("Canvas2ImagePlugin ", Integer.toString(base64.length()));
+					//byte[] decodedString = Base64.decode(base64, Base64.DEFAULT);
+					//Bitmap bmp = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+					Bitmap bmp = BitmapFactory.decodeStream(b64in);
+					if (bmp == null) {
+						callbackContext.error("The image could not be decoded");
+					} else {
+						
+						// Save the image
+						File imageFile = savePhoto(bmp);
+						if (imageFile == null)
+							callbackContext.error("Error while saving image");
+						
+						// Update image gallery
+						scanPhoto(imageFile);
+						
+						callbackContext.success(imageFile.toString());
+					}
+				}
+			});
 			
 			return true;
 		} else {
