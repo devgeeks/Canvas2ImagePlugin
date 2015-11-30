@@ -76,7 +76,8 @@ public class Canvas2ImagePlugin extends CordovaPlugin {
 					+ c.get(Calendar.YEAR)
 					+ c.get(Calendar.HOUR_OF_DAY)
 					+ c.get(Calendar.MINUTE)
-					+ c.get(Calendar.SECOND);
+					+ c.get(Calendar.SECOND)
+					+ c.get(Calendar.MILLISECOND);
 
 			String deviceVersion = Build.VERSION.RELEASE;
 			Log.i("Canvas2ImagePlugin", "Android version " + deviceVersion);
