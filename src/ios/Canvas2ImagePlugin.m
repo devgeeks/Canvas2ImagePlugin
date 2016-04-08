@@ -29,6 +29,16 @@
 	
 }
 
+- (void)saveImageBinaryDataToLibrary:(CDVInvokedUrlCommand*)command
+{
+    self.callbackId = command.callbackId;
+    NSData* imageData = [[command.arguments objectAtIndex:0] dataUsingEncoding:NSUTF8StringEncoding];
+    
+    UIImage* image = [[[UIImage alloc] initWithData:imageData] autorelease];    
+    UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
+    
+}
+
 - (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo
 {
     // Was there an error?

@@ -19,4 +19,6 @@
 
 - (void)saveImageDataToLibrary:(CDVInvokedUrlCommand*)command;
 
+- (void)saveImageBinaryDataToLibrary:(CDVInvokedUrlCommand*)command;
+
 @end
