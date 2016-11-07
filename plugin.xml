@@ -18,6 +18,8 @@
     <js-module src="www/Canvas2ImagePlugin.js" name="Canvas2ImagePlugin">
         <clobbers target="window.canvas2ImagePlugin" />
     </js-module>
+    
+    <dependency id="cordova-plugin-compat" version="^1.0.0" />
 
     <!-- ios -->
     <platform name="ios">
