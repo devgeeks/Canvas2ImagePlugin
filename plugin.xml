@@ -34,6 +34,12 @@
 
         <source-file src="src/ios/Canvas2ImagePlugin.m"
             compiler-flags="-fno-objc-arc" />
+            
+        <preference name="PHOTOLIBRARY_USAGE_DESCRIPTION" default=" " />
+        <config-file target="*-Info.plist" parent="NSPhotoLibraryUsageDescription">
+            <string>$PHOTOLIBRARY_USAGE_DESCRIPTION</string>
+        </config-file>
+        
     </platform>
 
     <!-- android -->
