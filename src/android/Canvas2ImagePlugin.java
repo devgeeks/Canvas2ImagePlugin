@@ -99,6 +99,12 @@ public class Canvas2ImagePlugin extends CordovaPlugin {
 				folder = Environment.getExternalStorageDirectory();
 			}
 			
+			folder = new File(folder, "cordova_app");
+
+			if (!folder.exists()) {
+				folder.mkdirs();
+			}
+
 			File imageFile = new File(folder, "c2i_" + date.toString() + ".png");
 
 			FileOutputStream out = new FileOutputStream(imageFile);
