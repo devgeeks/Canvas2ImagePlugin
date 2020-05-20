@@ -37,6 +37,8 @@
     <!-- android -->
     <platform name="android">
 
+        <dependency id="com.android.support:support-v4@25.0.0" />
+
         <config-file target="AndroidManifest.xml" parent="/*">
             <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
         </config-file>
