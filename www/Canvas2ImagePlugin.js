@@ -9,7 +9,7 @@
 
   module.exports = {
     
-    saveImageDataToLibrary:function(successCallback, failureCallback, canvasId) {
+    saveImageDataToLibrary:function(successCallback, failureCallback, canvasString, customName) {
         // successCallback required
         if (typeof successCallback != "function") {
             console.log("Canvas2ImagePlugin Error: successCallback is not a function");
@@ -17,10 +17,10 @@
         else if (typeof failureCallback != "function") {
             console.log("Canvas2ImagePlugin Error: failureCallback is not a function");
         }
-        else {
-            var canvas = (typeof canvasId === "string") ? document.getElementById(canvasId) : canvasId;
-            var imageData = canvas.toDataURL().replace(/data:image\/png;base64,/,'');
-            return cordova.exec(successCallback, failureCallback, "Canvas2ImagePlugin","saveImageDataToLibrary",[imageData]);
+        else {                        
+            var imageData = canvasString.replace(/data:image\/png;base64,/,'');
+            var imageName = String(customName);
+            return cordova.exec(successCallback, failureCallback, "Canvas2ImagePlugin","saveImageDataToLibrary",[imageData, imageName]);
         }
     }
   };
